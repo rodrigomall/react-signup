@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+#  React Sign Up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+⭐⭐⭐ [Check out demo here.](https://rodrigomall.github.io/react-signup/) ⭐⭐⭐
+
+![alt text](https://github.com/rodrigomall/react-signup/blob/main/src/assets/images/signup-desktop.png?raw=true "Title")   ![alt text](https://github.com/rodrigomall/react-signup/blob/main/src/assets/images/signup-mobile.png?raw=true "Title")
 
 ## Available Scripts
 

@@ -1,0 +1,53 @@
+@import '../../styles/constants.scss';
+$size: 'sm';
+
+@mixin btn($size) {
+  border-radius: 200em;
+  cursor: pointer;
+  @if $size == 'sm' {
+    width: 110px;
+    height: 40px;
+  } @else if $size == 'smd' {
+    width: 200px;
+    height: 40px;
+  } @else if $size == 'md' {
+    width: 200px;
+    height: 50px;
+  } @else if $size == 'lg' {
+    width: 300px;
+    height: 50px;
+  } @else {
+    width: 100%;
+    height: 50px;
+  }
+}
+@mixin btn-btn($bg-color, $bd-color, $font-color) {
+  background-color: $bg-color;
+  border: 1px solid $bd-color;
+  color: $font-color;    
+  text-transform: uppercase;
+  &:hover { color: $font-color; }
+  &:disabled {
+    background-color: desaturate($bg-color, 30%);
+    cursor: default;
+  }
+}
+.btn-btn-purple{
+  @include btn-btn($purple, $purple-border, $white)
+}
+.btn-btn-white{
+  @include btn-btn($white, $gray-border, $gray-text)
+}
+.btn-bs{
+  @include btn('bs')
+}
+.btn-sm{
+  @include btn('sm')
+}
+.btn-md{
+  @include btn('md')
+}
+.btn-lg{
+  @include btn('lg')
+}
+

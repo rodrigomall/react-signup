@@ -1,0 +1,8 @@
+.form-control.is-invalid {
+  background-image: none;
+}
+  
+.form-control:focus {
+  border-color: #F0F0F2;
+  box-shadow: 0 0 0 0.2rem rgba(50, 51, 50, 0.25);
+}

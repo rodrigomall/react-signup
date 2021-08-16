@@ -1,0 +1,15 @@
+//Modify boostrap defaults
+$border-radius: 2px;
+$input-focus-box-shadow: none!important;
+$btn-focus-box-shadow: none!important;
+
+//Import
+@import 'bootstrap/scss/bootstrap.scss';
+@import './styles/constants.scss';
+@import './styles/input.scss';
+
+.bg-image {
+  background-image: url('./assets/images/texture.png');
+  background-repeat: no-repeat;
+  background-size:cover;
+}

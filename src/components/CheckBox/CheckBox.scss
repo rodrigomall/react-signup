@@ -1,0 +1,70 @@
+@import '../../styles/constants.scss';
+
+$size: 24px;
+.checkbox-container {
+  display: block;
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  padding-left: 34px;
+  margin: 20px 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  &.invalid {
+    .checkmark {
+      border-color: $red!important;
+    }
+  }
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $size;
+  width: $size;
+  background-color: $white;
+  border-radius: 2px;
+  border: 1px solid $gray-border;
+}
+.checkbox-container:hover input ~ .checkmark {
+    background-color: $purple;
+}
+.checkbox-container input:checked ~ .checkmark {
+  background-color: $purple;
+  border-color: $purple;
+  &.be-blue {
+    background-color: $purple;
+    border-color: $purple;
+  }
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 6px;
+  width: 4px;
+  height: 9px;
+  border: solid $white;    
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+

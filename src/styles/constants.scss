@@ -1,0 +1,41 @@
+
+$purple: #c95cc9;
+$purple-border: #c95cc9;
+$gray-border: #909090;
+$gray-text: #76777b;
+$white: #fff;
+$red: #dc3545;
+
+.text-size {
+  &-12 {
+    font-size: 12px;
+  }
+  &-14 {
+    font-size: 14px;
+  }
+  &-16 {
+    font-size: 16px;
+  }
+  &-18 {
+    font-size: 18px;
+  }
+  &-24 {
+    font-size: 24px;
+  }
+}
+
+.text {
+  &-gray {
+    color: $gray-text;
+  }
+  &-purple {
+    color: $purple;
+  }
+}
+
+.border {
+  border-color: $gray-border;
+  &-bottom {
+    border-bottom: solid 1px $gray-border!important;
+  }
+}
