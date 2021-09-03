@@ -48,7 +48,6 @@ const useSignUpForm = () => {
   }
 
   const onCheckedAdvance = () => {
-    console.log(stateChecked.advance);
     setChecked({
       ...stateChecked,
       advance: !stateChecked.advance
@@ -76,7 +75,7 @@ const useSignUpForm = () => {
     });
   }
 
-  const onSubmitForm = (params) => {
+  const onSubmitData = (params) => {
     console.log(params);
     Swal.fire(
       'Sent Successfully!',
@@ -88,7 +87,7 @@ const useSignUpForm = () => {
   return {
     ...form,
     reset,
-    onSubmitForm,
+    onSubmitData,
     onCheckedAdvance,
     onCheckedAlert,
     onCheckedOther,

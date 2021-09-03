@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Row, Col, Input, Label, Form, FormFeedback } from 'reactstrap';
 import { isMobile } from 'react-device-detect';
 import { selectStyles } from '../../constants/config';
@@ -8,10 +8,16 @@ import CheckBox from '../../components/CheckBox/CheckBox';
 import Select from 'react-select';
 
 const SignUpForm = () => {
-  const { firstName, lastName, email, validate, reset, onSubmitForm, onSelectResident, onCheckedAdvance, onCheckedAlert, onCheckedOther, stateChecked, stateSelected } = useSignUpForm();
+  const firstNameRef  = useRef(null);
+  const { firstName, lastName, email, validate, reset, onSubmitData, onSelectResident, onCheckedAdvance, onCheckedAlert, onCheckedOther, stateChecked, stateSelected } = useSignUpForm();
   const { resident } = stateSelected;
 
-  const onSubmit = () => {
+  useEffect(()=>{
+    firstNameRef.current.focus();
+  }, []);
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
     const errors = validate();
     if (!errors && resident !=='') {
       const params = {
@@ -23,10 +29,14 @@ const SignUpForm = () => {
         checkedOther: stateChecked.other,
         resident: resident
       }
-      onSubmitForm(params);
+      onSubmitData(params);
     }
   }
 
+  const onResetForm = () => {
+    firstNameRef.current.focus();
+    reset();
+  }
   const onSelect = (e) => {
     onSelectResident(e);
   }
@@ -40,24 +50,23 @@ const SignUpForm = () => {
   ];
 
   return (
-    <>
-    <Form>
+    <Form onSubmit={onSubmitForm}>
       <Row >
         <Col xs={isMobile ? 12 : 6} >
-          <Label className='py-2 text-size-12 text-gray'>FIRST NAME*</Label>
-          <Input {...firstName} className='shadow-none' />
+          <Label for='firstName' className='py-2 text-size-12 text-gray'>FIRST NAME *</Label>
+          <Input id='firstName' {...firstName} className='shadow-none' innerRef={firstNameRef} />
           <FormFeedback>{firstName.message}</FormFeedback>
         </Col>
         <Col xs={isMobile ? 12 : 6}>
-          <Label className='py-2 text-size-12 text-gray'>LAST NAME*</Label>
-          <Input {...lastName} className='shadow-none' />
+          <Label for='lastName' className='py-2 text-size-12 text-gray'>LAST NAME *</Label>
+          <Input id='lastName' {...lastName} className='shadow-none' />
           <FormFeedback>{lastName.message}</FormFeedback>
         </Col>
       </Row>
       <Row>
         <Col xs={isMobile ? 12 : 6}>
-          <Label className='py-2 text-size-12 text-gray'>EMAIL ADDRESS*</Label>
-          <Input {...email} className='shadow-none' />
+          <Label for='email' className='py-2 text-size-12 text-gray'>EMAIL ADDRESS *</Label>
+          <Input id='email' {...email} className='shadow-none' />
           <FormFeedback>{email.message}</FormFeedback>
         </Col>
         <Col xs={isMobile ? 12 : 6}>
@@ -67,8 +76,8 @@ const SignUpForm = () => {
       </Row>
       <Row>
         <Col xs={isMobile ? 12 : 6}>
-          <Label className='py-2 text-size-12 text-gray'>EU RESIDENT*</Label>
-          <Select options={options} onChange={onSelect} value={stateSelected.residentObj || ''} styles={selectStyles} />
+          <Label for='state' className='py-2 text-size-12 text-gray'>EU RESIDENT *</Label>
+          <Select id='state' options={options} onChange={onSelect} value={stateSelected.residentObj || ''} styles={selectStyles} />
         </Col>
       </Row>
       <Row>
@@ -84,17 +93,15 @@ const SignUpForm = () => {
           <CheckBox name='idOther' text={'OTHER COMMUNICATIONS'} value={stateChecked.other} onChange={onCheckedOther} className='text-gray'/>
         </Col>
       </Row>
-    </Form>
-    <Row className='py-3'>
-      <Col xs={isMobile ? 6 : 2}>
-        <Button onClick={onSubmit} className='w-100'  variant='purple' size='sm' text='Submit' />
-      </Col>
-      <Col xs={isMobile ? 6 : 2}>
-        <Button onClick={reset} className='w-100' variant='white' size='sm' text='Reset' />
-      </Col>
-    </Row>
-     
-    </>
+      <Row className='py-3'>
+        <Col xs={isMobile ? 6 : 2}>
+          <Button type='submit' className='w-100'  variant='purple' size='sm' text='Submit' />
+        </Col>
+        <Col xs={isMobile ? 6 : 2}>
+          <Button type='reset' onClick={onResetForm} className='w-100' variant='white' size='sm' text='Reset' />
+        </Col>
+      </Row>
+    </Form> 
   )
 }
 
